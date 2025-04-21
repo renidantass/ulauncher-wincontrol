@@ -1,0 +1,26 @@
+{
+  "required_api_version": "2",
+  "name": "Wincontrol",
+  "description": "Control your windows through keyboard-centric",
+  "developer_name": "Reni Dantas",
+  "icon": "images/icon.png",
+  "options": {
+    "query_debounce": 0.1
+  },
+  "preferences": [
+    {
+      "id": "wincontrol_kw",
+      "type": "keyword",
+      "name": "List windows",
+      "description": "List all windows",
+      "default_value": "w"
+    },
+    {
+      "id": "wincontrol_kwc",
+      "type": "keyword",
+      "name": "List windows",
+      "description": "Close window",
+      "default_value": "wc"
+    }
+  ]
+}
