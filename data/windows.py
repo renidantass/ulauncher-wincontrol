@@ -15,7 +15,9 @@ class WindowsService:
             return []
         
         windows = result.stdout.replace("('", '').replace("',)", '')
-        return json.loads(windows)
+        windows = json.loads(windows)
+        windows = [window for window in windows if 'ulauncher' not in window['wm_class'].lower()]
+        return windows
     
     @staticmethod
     def focus_in_window(title: str) -> bool | None:
