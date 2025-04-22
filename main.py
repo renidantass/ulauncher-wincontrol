@@ -11,7 +11,6 @@ from data.windows import WindowsService
 
 logger = logging.getLogger()
 
-
 class WinControlExtension(Extension):
 
     def __init__(self):
@@ -27,8 +26,10 @@ class KeywordQueryEventListener(EventListener):
         for i in range(0, len(windows)):
             logger.debug(windows[i])
             window_title = windows[i]['title']
+            wm_class = windows[i]['wm_class']
+            window_icon = WindowsService().get_icon_from_wm_class(wm_class)
             data = {'title': window_title}
-            items.append(ExtensionResultItem(icon='images/icon.png',
+            items.append(ExtensionResultItem(icon=window_icon,
                                              name='%s' % window_title,
                                              on_enter=ExtensionCustomAction(data, keep_app_open=True)))
 
@@ -38,7 +39,6 @@ class ItemEnterEventListener(EventListener):
 
     def on_event(self, event, extension):
         data = event.get_data()
-        logger.debug(data)
         WindowsService().focus_in_window(data['title'])
 
 if __name__ == '__main__':
